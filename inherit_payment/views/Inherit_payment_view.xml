@@ -1,0 +1,13 @@
+<odoo>
+    <record id="extend_form" model="ir.ui.view">
+        <field name="name">extended form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_bank_id" position="after">
+                <field name="gerproc_id" attrs="{'invisible':[('gerproc_id','=',False)]}"/>
+                <field name="pagamento_com_cheque_id" attrs="{'invisible':[('pagamento_com_cheque_id','=',[])]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

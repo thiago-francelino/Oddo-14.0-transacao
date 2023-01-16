@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="cadastro_cheque_view" model="ir.ui.view">
+        <field name="name">Cadastro cheque list</field>
+        <field name="model">cadastro.cheque</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id"/>
+                <field name="valor"/>
+                <field name="data_deposito"/>
+                <field name="type_cheque"/>
+                <field name="devolucao_related"/>
+                <field name="pago_pelo_lote_related"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="cadastro_cheque_form" model="ir.ui.view">
+        <field name="name">Cadastro cheque form</field>
+        <field name="model">cadastro.cheque</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1 style="margin-bottom: 50px;">Configuração da transferência</h1>
+
+                    <group>
+                        <group>
+                            <field name="barcode"/>
+                            <field name="type_cheque"/>
+                            <field name="data_deposito"/>
+                            <field name="valor"/>
+
+                        </group>
+                        <group>
+                            <field name="terceiro"/>
+                            <field name="nome_terceiro" attrs="{'invisible':[('terceiro', '!=', True)]}"/>
+                            <field name="cpf_terceiro" attrs="{'invisible':[('terceiro', '!=', True)]}"/>
+                            <field name="telefone_terceiro" attrs="{'invisible':[('terceiro', '!=', True)]}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="Agency_cheque"/>
+                        <field name="number_cheque"/>
+                        <field name="account_cheque"/>
+                        <field name="cheque_amount_text"/>
+                        <field name="bank_cheque"/>
+                    </group>
+                    <group>
+                        <field name="movimentos" attrs="{'invisible':[('movimentos','=',False)]}"/>
+                        <field name="pagamentos_feitos_com_cheque"
+                               attrs="{'invisible':[('pagamentos_feitos_com_cheque','=',[])]}"/>
+                        <field name="lote_cheque_id" attrs="{'invisible':[('lote_cheque_id','=',[])]}"/>
+<!--                        <field name="pagamento_devolucao_id" attrs="{'invisible':[('pagamento_devolucao_id','=',False)]}"/>-->
+                        <field name="devolucao_related" readonly='True'/>
+                        <field name="pago_pelo_lote_related" readonly='True'/>
+                        <field name="descricao"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="cadastro_cheque_action" model="ir.actions.act_window">
+        <field name="name">Cadastro cheque</field>
+        <field name="res_model">cadastro.cheque</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="cadastro_cheque_root_menu" name="Cadastro cheque" action="cadastro_cheque_action" parent="account.menu_finance"/>
+</odoo>

@@ -1,0 +1,21 @@
+<odoo>
+
+        <record id="account_payment_form_view_inherited" model="ir.ui.view">
+            <field name="name">Pagamentos</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//group" position="inside">-->
+<!--                    <field name="cheque_id"/>-->
+<!--                </xpath>-->
+                <field name="partner_bank_id" position="after">
+<!--                    <field name="cheque_id" attrs="{'invisible':[('cheque_id', '!=', True)]}"/>-->
+                    <field name="cheque_id" attrs="{'invisible':[('cheque_id','=',False)]}"/>
+                    <field name="lote_id" attrs="{'invisible':[('lote_id','=',False)]}"/>
+<!--                    <field name="cheque_devolucao_id"/>-->
+                    <field name="devolucao"/>
+                </field>
+            </field>
+        </record>
+
+</odoo>
